@@ -67,6 +67,14 @@ body {
   overscroll-behavior-y: contain;
 }
 
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* ===== PROMO BANNER ===== */
 .promo-banner {
   background: var(--accent);
@@ -1084,10 +1092,17 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
 </head>
 <body>
 
+<!-- SVG ICONS LIBRARY -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="wa-icon" viewBox="0 0 24 24">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </symbol>
+</svg>
+
 <!-- POPUP BIENVENIDA -->
 <div class="popup-overlay" id="popup-overlay">
   <div class="popup-box">
-    <button class="chat-close" onclick="closePopup()" style="position:absolute;top:14px;right:16px;font-size:18px">✕</button>
+    <button class="chat-close" onclick="closePopup()" style="position:absolute;top:14px;right:16px;font-size:18px" aria-label="Cerrar">✕</button>
     <div class="popup-emoji">👟</div>
     <div class="popup-title">¡BIENVENIDO A TENIS GARCÍA!</div>
     <div class="popup-subtitle">Tenis originales al mejor precio. Usa este cupón exclusivo en tu primer pedido:</div>
@@ -1096,16 +1111,16 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
       <div class="popup-coupon-code">TGARCIA10</div>
       <div class="popup-coupon-desc">10% de descuento en cualquier par</div>
     </div>
-    <button class="popup-btn" onclick="closePopup()">
+    <button class="popup-btn" onclick="closePopup()" aria-label="Ver catálogo de tenis">
       ¡Ver el catálogo! 👟
     </button>
-    <button class="popup-skip" onclick="closePopup()">No gracias, entrar sin descuento</button>
+    <button class="popup-skip" onclick="closePopup()" aria-label="Entrar sin descuento">No gracias, entrar sin descuento</button>
   </div>
 </div>
 
 <!-- CHAT BIENVENIDA -->
 <div class="chat-bubble" id="chat-bubble">
-  <button class="chat-close" onclick="closeChat()">✕</button>
+  <button class="chat-close" onclick="closeChat()" aria-label="Cerrar chat">✕</button>
   <div class="chat-bubble-header">
     <div class="chat-avatar">👟</div>
     <div>
@@ -1114,7 +1129,7 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
     </div>
   </div>
   <div class="chat-text">¡Hola! 👋 ¿Buscas tenis originales? Tenemos los mejores precios y envío en 48h. ¡Pregúntame lo que quieras!</div>
-  <button class="chat-reply-btn" onclick="openWA('Hola! Vi la tienda Tenis García y quiero informes')">
+  <button class="chat-reply-btn" onclick="openWA('Hola! Vi la tienda Tenis García y quiero informes')" aria-label="Escribir por WhatsApp">
     💬 Escribir ahora
   </button>
 </div>
@@ -1128,11 +1143,11 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
 <header>
   <img src="./logo_final.png" alt="Tenis García" style="height:75px;object-fit:contain;">
   <div class="header-right">
-    <button class="fav-header-btn" onclick="openFav()" title="Mis favoritos">
+    <button class="fav-header-btn" onclick="openFav()" title="Mis favoritos" aria-label="Ver favoritos">
       ❤️ <div class="fav-badge" id="fav-badge">0</div>
     </button>
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Cambiar tema">🌙</button>
-    <button class="cart-btn" onclick="openCart()">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" title="Cambiar tema" aria-label="Cambiar tema claro/oscuro">🌙</button>
+    <button class="cart-btn" onclick="openCart()" aria-label="Ver carrito">
       🛒 Carrito <div class="cart-count" id="cart-count">0</div>
     </button>
   </div>
@@ -1149,8 +1164,8 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
     <div class="hero-stat"><div class="hero-stat-num">4.9★</div><div class="hero-stat-label">Calificación</div></div>
     <div class="hero-stat"><div class="hero-stat-num">30d</div><div class="hero-stat-label">Garantía</div></div>
   </div>
-  <button class="hero-cta" onclick="openWA('Hola! Vi la tienda Tenis García y quiero informes')">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <button class="hero-cta" onclick="openWA('Hola! Vi la tienda Tenis García y quiero informes')" aria-label="Hablar con ventas por WhatsApp">
+    <svg width="20" height="20"><use href="#wa-icon"/></svg>
     Hablar con Ventas
   </button>
 </section>
@@ -1177,7 +1192,7 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
           <div class="deal-old" id="deal-old"></div>
           <div class="deal-save" id="deal-save"></div>
         </div>
-        <button class="deal-btn" id="deal-btn">Ver y pedir 👟</button>
+        <button class="deal-btn" id="deal-btn" aria-label="Ver y pedir tenis del día">Ver y pedir 👟</button>
         <div class="deal-timer" id="deal-timer"></div>
       </div>
     </div>
@@ -1187,24 +1202,24 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
 <!-- SEARCH -->
 <div class="search-wrap">
   <div class="search-box">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="search-input" placeholder="Buscar por modelo o marca..." oninput="onSearch(this.value)">
-    <button class="search-clear" id="search-clear" onclick="clearSearch()">✕</button>
+    <span class="search-icon" aria-hidden="true">🔍</span>
+    <input type="text" id="search-input" placeholder="Buscar por modelo o marca..." oninput="onSearch(this.value)" aria-label="Buscar productos">
+    <button class="search-clear" id="search-clear" onclick="clearSearch()" aria-label="Limpiar búsqueda">✕</button>
   </div>
 </div>
 
 <!-- TOOLBAR -->
 <div class="toolbar">
   <div class="filters" id="filters">
-    <button class="filter-btn active" onclick="filterProducts('todos', this)">Todos</button>
-    <button class="filter-btn" onclick="filterProducts('running', this)">Running</button>
-    <button class="filter-btn" onclick="filterProducts('lifestyle', this)">Lifestyle</button>
-    <button class="filter-btn" onclick="filterProducts('nuevo', this)">🆕 Nuevo</button>
-    <button class="filter-btn" onclick="filterProducts('oferta', this)">🔥 Oferta</button>
+    <button class="filter-btn active" onclick="filterProducts('todos', this)" aria-label="Mostrar todos">Todos</button>
+    <button class="filter-btn" onclick="filterProducts('running', this)" aria-label="Filtrar running">Running</button>
+    <button class="filter-btn" onclick="filterProducts('lifestyle', this)" aria-label="Filtrar lifestyle">Lifestyle</button>
+    <button class="filter-btn" onclick="filterProducts('nuevo', this)" aria-label="Filtrar nuevo">🆕 Nuevo</button>
+    <button class="filter-btn" onclick="filterProducts('oferta', this)" aria-label="Filtrar oferta">🔥 Oferta</button>
   </div>
   <div class="sort-row">
     <span class="sort-label">Ordenar:</span>
-    <select class="sort-select" id="sort-select" onchange="sortProducts(this.value)">
+    <select class="sort-select" id="sort-select" onchange="sortProducts(this.value)" aria-label="Ordenar productos">
       <option value="default">Destacados</option>
       <option value="price-asc">Precio: Menor a Mayor</option>
       <option value="price-desc">Precio: Mayor a Menor</option>
@@ -1313,23 +1328,23 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
     <div class="modal-reviews" id="modal-reviews"></div>
     <div class="modal-section-label">Cupón de descuento</div>
     <div class="coupon-row">
-      <input class="coupon-input" id="coupon-input" placeholder="KICKS10" maxlength="10">
-      <button class="coupon-btn" onclick="applyCoupon()">Aplicar</button>
+      <input class="coupon-input" id="coupon-input" placeholder="KICKS10" maxlength="10" aria-label="Código de cupón">
+      <button class="coupon-btn" onclick="applyCoupon()" aria-label="Aplicar cupón">Aplicar</button>
     </div>
     <div class="coupon-msg" id="coupon-msg"></div>
     <div class="modal-section-label">Cantidad</div>
     <div class="qty-row">
       <div class="qty-ctrl">
-        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <button class="qty-btn" onclick="changeQty(-1)" aria-label="Reducir cantidad">−</button>
         <div class="qty-num" id="qty-num">1</div>
-        <button class="qty-btn" onclick="changeQty(1)">+</button>
+        <button class="qty-btn" onclick="changeQty(1)" aria-label="Aumentar cantidad">+</button>
       </div>
       <div class="qty-label">unidades</div>
     </div>
     <div class="modal-actions">
-      <button class="btn-cart" onclick="addToCart()">🛒 Al Carrito</button>
-      <button class="btn-wa" onclick="orderWhatsApp()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <button class="btn-cart" onclick="addToCart()" aria-label="Agregar al carrito">🛒 Al Carrito</button>
+      <button class="btn-wa" onclick="orderWhatsApp()" aria-label="Pedir por WhatsApp">
+        <svg width="16" height="16"><use href="#wa-icon"/></svg>
         Pedir ya
       </button>
     </div>
@@ -1342,12 +1357,12 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
   <div class="fav-panel">
     <div class="fav-head">
       <div class="fav-head-title">❤️ Favoritos</div>
-      <button class="close-btn" onclick="closeFav()">✕</button>
+      <button class="close-btn" onclick="closeFav()" aria-label="Cerrar favoritos">✕</button>
     </div>
     <div class="fav-items" id="fav-items-list"></div>
     <div class="fav-footer" id="fav-footer" style="display:none">
-      <button class="fav-wa-btn" onclick="sendFavWhatsApp()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <button class="fav-wa-btn" onclick="sendFavWhatsApp()" aria-label="Preguntar por favoritos en WhatsApp">
+        <svg width="20" height="20"><use href="#wa-icon"/></svg>
         Preguntar por mis favoritos
       </button>
     </div>
@@ -1360,7 +1375,7 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
   <div class="cart-panel">
     <div class="cart-head">
       <div class="cart-head-title">🛒 Tu Carrito</div>
-      <button class="close-btn" onclick="closeCart()">✕</button>
+      <button class="close-btn" onclick="closeCart()" aria-label="Cerrar carrito">✕</button>
     </div>
     <div class="cart-items" id="cart-items-list"></div>
     <div class="cart-footer">
@@ -1371,8 +1386,8 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
         <div class="cart-total-label">Total del pedido</div>
         <div class="cart-total-price" id="cart-total">$0</div>
       </div>
-      <button class="order-wa-btn" onclick="sendCartWhatsApp()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <button class="order-wa-btn" onclick="sendCartWhatsApp()" aria-label="Enviar pedido por WhatsApp">
+        <svg width="20" height="20"><use href="#wa-icon"/></svg>
         Enviar pedido por WhatsApp
       </button>
     </div>
@@ -1380,35 +1395,13 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- WA FLOAT -->
-<div class="wa-float-pulse"></div>
-<a class="wa-float" href="https://wa.me/526951093237?text=Hola!%20Quiero%20informes%20sobre%20sus%20tenis" target="_blank">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+<div class="wa-float-pulse" aria-hidden="true"></div>
+<a class="wa-float" href="https://wa.me/526951093237?text=Hola!%20Quiero%20informes%20sobre%20sus%20tenis" target="_blank" aria-label="Contactar por WhatsApp" rel="noopener">
+  <svg width="26" height="26"><use href="#wa-icon"/></svg>
 </a>
-
-
-<!-- BOTTOM NAV 
-<nav class="bottom-nav">
-  <button class="bottom-nav-btn active" id="nav-home" onclick="scrollToTop()">
-    <span class="nav-icon">🏠</span>Inicio
-  </button>
-  <button class="bottom-nav-btn" id="nav-search" onclick="focusSearch()">
-    <span class="nav-icon">🔍</span>Buscar
-  </button>
-  <button class="bottom-nav-btn" id="nav-fav" onclick="openFav()">
-    <span class="nav-icon">❤️</span>Favoritos
-    <div class="nav-badge" id="nav-fav-badge">0</div>
-  </button>
-  <button class="bottom-nav-btn" id="nav-cart" onclick="openCart()">
-    <span class="nav-icon">🛒</span>Carrito
-    <div class="nav-badge" id="nav-cart-badge">0</div>
-  </button>
-  <button class="bottom-nav-btn" id="nav-wa" onclick="openWA('Hola! Quiero informes de Tenis García')">
-    <span class="nav-icon">💬</span>WhatsApp
-  </button>
-</nav> -->
 
 <footer>
   <strong>Tenis García</strong> — Tenis Premium · © 2026<br><br>
@@ -1416,12 +1409,26 @@ footer code { background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4
 </footer>
 
 <script>
-const WA_NUMBER = '+526951093237';
+// ===== CONFIGURACIÓN =====
+const CONFIG = {
+  PHONE: '+526951093237',
+  FREE_SHIPPING_MIN: 999,
+  DELIVERY_TIME: '48h',
+  STORE_NAME: 'Tenis García',
+  SUPPORTED_COUNTRIES: ['MX'],
+  STOCK_THRESHOLDS: {
+    LOW: 3,
+    MEDIUM: 8
+  }
+};
+
+const WA_NUMBER = CONFIG.PHONE;
 
 const COUPONS = {
   'KICKS10': 10,
   'BIENVENIDO': 15,
   'PROMO20': 20,
+  'TGARCIA10': 10,
 };
 
 const productos = [
@@ -1463,6 +1470,59 @@ let selectedProduct = null;
 let selectedSize = null;
 let qty = 1;
 let appliedDiscount = 0;
+
+// ===== UTILS =====
+function sanitizeHTML(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function fmt(n) { return '$' + n.toLocaleString('es-MX'); }
+function stars(r) { return '★'.repeat(Math.floor(r)) + (r % 1 >= 0.5 ? '½' : '') + '☆'.repeat(5 - Math.ceil(r)); }
+function openWA(msg) { window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener'); }
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ===== LOCAL STORAGE =====
+function saveState() {
+  localStorage.setItem('tenisGarciaCart', JSON.stringify(cart));
+  localStorage.setItem('tenisGarciaWishlist', JSON.stringify([...wishlist]));
+  localStorage.setItem('tenisGarciaTheme', document.documentElement.getAttribute('data-theme'));
+}
+
+function loadState() {
+  const savedCart = localStorage.getItem('tenisGarciaCart');
+  if (savedCart) {
+    try {
+      cart = JSON.parse(savedCart);
+    } catch(e) {
+      cart = [];
+    }
+  }
+  
+  const savedWish = localStorage.getItem('tenisGarciaWishlist');
+  if (savedWish) {
+    try {
+      wishlist = new Set(JSON.parse(savedWish));
+    } catch(e) {
+      wishlist = new Set();
+    }
+  }
+  
+  const savedTheme = localStorage.getItem('tenisGarciaTheme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.getElementById('theme-btn').textContent = savedTheme === 'light' ? '☀️' : '🌙';
+  }
+  
+  updateCartCount();
+  updateFavBadge();
+}
 
 // ===== POPUP BIENVENIDA =====
 function closePopup() {
@@ -1528,23 +1588,27 @@ function updateDealTimer() {
     `⏱️ Termina en ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
 }
 
-// ===== UTILS =====
-function fmt(n) { return '$' + n.toLocaleString('es-MX'); }
-function stars(r) { return '★'.repeat(Math.floor(r)) + (r % 1 >= 0.5 ? '½' : '') + '☆'.repeat(5 - Math.ceil(r)); }
-function openWA(msg) { window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank'); }
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
 // ===== THEME =====
 function toggleTheme() {
   const html = document.documentElement;
   const isDark = html.getAttribute('data-theme') === 'dark';
   html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  document.getElementById('theme-btn').textContent = isDark ? '🌙' : '☀️';
+  document.getElementById('theme-btn').textContent = isDark ? '☀️' : '🌙';
+  saveState();
+}
+
+// ===== SCROLL FUNCTIONS =====
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+function focusSearch() {
+  const searchInput = document.getElementById('search-input');
+  searchInput.scrollIntoView({ behavior: 'smooth' });
+  searchInput.focus();
 }
 
 // ===== COUNTDOWN =====
@@ -1614,21 +1678,21 @@ function renderProductList(list) {
     return;
   }
   grid.innerHTML = list.map((p, i) => {
-    const stockLabel = p.stock <= 3 ? `<div class="stock-badge stock-low">¡Solo ${p.stock} disponibles!</div>`
-      : p.stock <= 8 ? `<div class="stock-badge">${p.stock} en stock</div>` : '';
+    const stockLabel = p.stock <= CONFIG.STOCK_THRESHOLDS.LOW ? `<div class="stock-badge stock-low">¡Solo ${p.stock} disponibles!</div>`
+      : p.stock <= CONFIG.STOCK_THRESHOLDS.MEDIUM ? `<div class="stock-badge">${p.stock} en stock</div>` : '';
     const wlActive = wishlist.has(p.id) ? 'active' : '';
     const wlIcon = wishlist.has(p.id) ? '❤️' : '🤍';
     return `
     <div class="product-card" style="animation-delay:${i*0.04}s" onclick="openModal(${p.id})">
       <div class="product-img">
         ${p.badge ? `<div class="product-badge badge-${p.badge}">${p.badge==='new'?'NUEVO':p.badge==='sale'?'OFERTA':'🔥 HOT'}</div>` : ''}
-        <button class="wishlist-btn ${wlActive}" onclick="event.stopPropagation();toggleWishlist(${p.id},this)">${wlIcon}</button>
+        <button class="wishlist-btn ${wlActive}" onclick="event.stopPropagation();toggleWishlist(${p.id},this)" aria-label="${wishlist.has(p.id) ? 'Eliminar de' : 'Agregar a'} favoritos">${wlIcon}</button>
         ${p.emoji}
         ${stockLabel}
       </div>
       <div class="product-info">
-        <div class="product-brand">${p.brand}</div>
-        <div class="product-name">${p.name}</div>
+        <div class="product-brand">${sanitizeHTML(p.brand)}</div>
+        <div class="product-name">${sanitizeHTML(p.name)}</div>
         <div class="product-stars">${stars(p.rating)} <span style="color:var(--muted);font-size:10px">(${p.reviews})</span></div>
         <div class="product-sizes">Tallas ${p.sizes[0]}–${p.sizes[p.sizes.length-1]} MX</div>
         <div class="viewer-count"><div class="viewer-dot"></div>${Math.floor(Math.random()*8)+2} personas viendo esto</div>
@@ -1638,9 +1702,9 @@ function renderProductList(list) {
             ${p.oldPrice ? `<div class="price-old">${fmt(p.oldPrice)}</div>` : ''}
           </div>
           <div style="display:flex;gap:6px">
-            <button class="share-btn" onclick="event.stopPropagation();shareProduct(${p.id})" title="Compartir">📤</button>
-            <button class="wa-btn" onclick="event.stopPropagation();quickWA(${p.id})" title="WhatsApp">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <button class="share-btn" onclick="event.stopPropagation();shareProduct(${p.id})" title="Compartir" aria-label="Compartir producto">📤</button>
+            <button class="wa-btn" onclick="event.stopPropagation();quickWA(${p.id})" title="WhatsApp" aria-label="Consultar por WhatsApp">
+              <svg width="16" height="16"><use href="#wa-icon"/></svg>
             </button>
           </div>
         </div>
@@ -1676,11 +1740,11 @@ function renderFav() {
     <div class="fav-item" onclick="closeFav();openModal(${p.id})">
       <div class="fav-img">${p.emoji}</div>
       <div class="fav-info">
-        <div class="fav-brand">${p.brand}</div>
-        <div class="fav-name">${p.name}</div>
+        <div class="fav-brand">${sanitizeHTML(p.brand)}</div>
+        <div class="fav-name">${sanitizeHTML(p.name)}</div>
         <div class="fav-price">${fmt(p.price)}${p.oldPrice ? `<span style="font-size:11px;color:var(--muted);text-decoration:line-through;margin-left:6px">${fmt(p.oldPrice)}</span>` : ''}</div>
       </div>
-      <button class="fav-remove" onclick="event.stopPropagation();removeFav(${p.id})">🗑</button>
+      <button class="fav-remove" onclick="event.stopPropagation();removeFav(${p.id})" aria-label="Eliminar de favoritos">🗑</button>
     </div>
   `).join('');
 }
@@ -1689,6 +1753,7 @@ function removeFav(id) {
   updateFavBadge();
   renderFav();
   applyFilters();
+  saveState();
   showToast('Eliminado de favoritos');
 }
 function updateFavBadge() {
@@ -1718,6 +1783,7 @@ function toggleWishlist(id, btn) {
     showToast('¡Agregado a favoritos! ❤️');
   }
   updateFavBadge();
+  saveState();
 }
 
 // ===== SHARE =====
@@ -1749,7 +1815,8 @@ function openModal(id) {
   const sizesEl = document.getElementById('modal-sizes');
   sizesEl.innerHTML = p.sizes.map(s => `
     <button class="size-opt ${p.naSize.includes(s) ? 'na' : ''}" 
-      onclick="${p.naSize.includes(s) ? '' : `selectSize('${s}', this)`}">${s}</button>
+      onclick="${p.naSize.includes(s) ? '' : `selectSize('${s}', this)`}"
+      ${p.naSize.includes(s) ? 'disabled aria-label="Talla no disponible"' : `aria-label="Seleccionar talla ${s}"`}>${s}</button>
   `).join('');
   // reviews
   const revs = reviewsDB[id] || [];
@@ -1762,7 +1829,7 @@ function openModal(id) {
         <div class="reviews-count">${p.reviews} reseñas verificadas</div>
       </div>
     </div>
-    ${revs.map(r => `<div class="review-item"><strong>${r.user}:</strong> "${r.text}"</div>`).join('')}
+    ${revs.map(r => `<div class="review-item"><strong>${sanitizeHTML(r.user)}:</strong> "${sanitizeHTML(r.text)}"</div>`).join('')}
   `;
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -1816,6 +1883,7 @@ function addToCart() {
   if (existing) { existing.qty += qty; }
   else { cart.push({ ...selectedProduct, size: selectedSize, qty, finalPrice: getDiscountedPrice(selectedProduct.price), discount: appliedDiscount }); }
   updateCartCount();
+  saveState();
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow = '';
   launchConfetti();
@@ -1854,11 +1922,11 @@ function renderCart() {
     <div class="ci">
       <div class="ci-img">${c.emoji}</div>
       <div class="ci-info">
-        <div class="ci-name">${c.brand} ${c.name}</div>
+        <div class="ci-name">${sanitizeHTML(c.brand)} ${sanitizeHTML(c.name)}</div>
         <div class="ci-detail">Talla ${c.size} MX · x${c.qty}${c.discount ? ` · -${c.discount}%` : ''}</div>
         <div class="ci-price">${fmt((c.finalPrice || c.price) * c.qty)}</div>
       </div>
-      <button class="ci-remove" onclick="removeFromCart(${i})">🗑</button>
+      <button class="ci-remove" onclick="removeFromCart(${i})" aria-label="Eliminar producto">🗑</button>
     </div>
   `).join('');
   const total = cart.reduce((s, c) => s + (c.finalPrice || c.price) * c.qty, 0);
@@ -1876,6 +1944,7 @@ function renderCart() {
 function removeFromCart(i) {
   cart.splice(i, 1);
   updateCartCount();
+  saveState();
   renderCart();
   showToast('Producto eliminado');
 }
@@ -1902,12 +1971,28 @@ function sendCartWhatsApp() {
 }
 
 // ===== INIT =====
-applyFilters();
-setupDealOfDay();
-// Mostrar popup al entrar (después de 1 segundo)
-setTimeout(() => {
-  document.getElementById('popup-overlay').classList.remove('hide');
-}, 1000);
+function init() {
+  loadState();
+  applyFilters();
+  setupDealOfDay();
+  
+  // Mostrar popup al entrar (después de 1 segundo) solo si es primera visita
+  const hasVisited = localStorage.getItem('tenisGarciaVisited');
+  if (!hasVisited) {
+    setTimeout(() => {
+      document.getElementById('popup-overlay').classList.remove('hide');
+      localStorage.setItem('tenisGarciaVisited', 'true');
+    }, 1000);
+  }
+}
+
+// Iniciar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 </script>
+
 </body>
 </html>
